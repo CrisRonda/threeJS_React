@@ -4,7 +4,7 @@ import {
   useFrame,
   extend,
   useThree,
-  useLoader
+  useLoader,
 } from "react-three-fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import mc from "./t.png";
@@ -18,7 +18,7 @@ function Box({
   position = [1, 1, 1],
   _texture = mc,
   animation = false,
-  speed = 0.1
+  speed = 0.1,
 }) {
   const mesh = useRef();
   const [texture] = useLoader(THREE.TextureLoader, [_texture]);
@@ -58,16 +58,15 @@ function Sphere() {
 }
 
 const CameraControls = () => {
-  // Get a reference to the Three.js Camera, and the canvas html element.
   // We need these to setup the OrbitControls class.
   // https://threejs.org/docs/#examples/en/controls/OrbitControls
 
   const {
     camera,
-    gl: { domElement }
+    gl: { domElement },
   } = useThree();
 
-  // Ref to the controls, so that we can update them on every frame using useFrame
+  // Ref to the controls, so that we can update them on every frame using useFrame like tick method
   const controls = useRef();
   useFrame((state) => controls.current.update());
   return (
